@@ -1,0 +1,63 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+BeBooky
+{% endblock %}
+
+{% block styleLinks %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/allBooks.css' %}">
+{% endblock %}
+
+{% block navBarLink %}BorrowedBooks{% endblock navBarLink %}
+{% block navBarLinkUrl %}#{% endblock navBarLinkUrl %}
+
+
+{% block header %}
+    <div class="welcome-container">
+        <div class="titles-container">
+            <h1>BeBooky: Read <br>& Borrow</h1>
+            <h3>Eplore the Boundless Realms of Storytelling</h3>
+            <div class="cta-container">
+                <a href="../pages/Login.html">
+                    <button class="cta-welcome-btns cta-borrow-now">Borrow Now</button>
+                </a>
+                <a href="../pages/allBooks.html">
+                    <button class="cta-welcome-btns cta-explore">Explore Books</button>
+                </a>
+            </div>
+        </div>
+        <div>
+            <img src="{% static 'images/main pic.svg' %}" alt="three people reading books" id="main-img">
+        </div>
+    </div>
+    <a href="#best-selling-title">
+        <div class="scroll-item">
+                <p>view books</p>
+                <img src="{% static 'images/down-arrow.svg' %}" alt="down arrow" id="down-arrow-img">
+        </div>
+    </a>
+{% endblock %}
+
+
+{% block main %}
+    <h1 id="best-selling-title">Best Selling Books</h1>
+    <section id="book-list" class="main-book-list">
+        {% for book in booksList %}
+            <div class="card">
+                <div class="image-container">
+                    <img src="{{book.bookCover.url}}" alt="{{book.name}} book" id="{{book.id}}">
+                </div>
+                <div class="container">
+                    <h3 class="Book-name">{{book.name}}</h3>
+                    <h6 class="Autor-name">{{book.author}}</h6>
+                <h2>
+                    <i class="star-icon">&#9733;</i>
+                    {{book.rating}}
+                </h2>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

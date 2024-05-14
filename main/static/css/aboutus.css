@@ -1,0 +1,65 @@
+:root {
+    --color1: #134e4a;
+    --color2: #115e59;
+    --color3: rgb(0, 0, 0);
+  }
+
+* {
+    margin: 0;
+}
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container {
+    display: flex;
+}
+
+.image-container {
+    flex: 1;
+    height: 100vh; /* Make image container full height */
+    /* width: 50%;  */
+    position: fixed; /* Fix image container */
+    overflow: hidden; /* Hide overflow from the image */
+}
+
+.image-container img {
+    width: 100%; /* Make image fill container */
+    height: 100%; /* Make image fill container height */
+    object-fit: cover; /* Ensure the image covers the entire container */
+}
+
+.text-container {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left: 50%; /* Make text container start after the image */
+    margin-top: 5%;
+}
+
+.about-us {
+    color: #134e4a;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.purpose-container, .success-container, .join-us-container {
+    margin-bottom: 20px;
+}
+.purpose, .success-story, .join-us {
+    color: var(--color2);
+    margin-bottom: 5px;
+}
+
+.purpose-text, .success-story-text, .join-us-text {
+    line-height: 22px;
+    text-align: justify;
+}
+
+#statement {
+    margin-top: 15px;
+    text-align: center;
+    color: #115e59;
+    font-weight: bold;
+}

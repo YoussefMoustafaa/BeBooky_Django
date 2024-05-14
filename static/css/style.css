@@ -1,0 +1,370 @@
+* {
+    outline: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: lato-regular;
+    src: url(../fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: lato-bold;
+    src: url(../fonts/Lato-Bold.ttf);
+}
+
+@font-face {
+    font-family: lato-black;
+    src: url(../fonts/Lato-Black.ttf);
+}
+
+:root {
+    --prim-clr-bg: #FAFAF9;
+    --sec-clr-bg: #F5F5F5;
+    --black: #0C0A09;
+    --accent: #134E4A;
+    --accent700: #0F766E;
+    --accent600: #0D9488;
+    --accent500: #14b8a6;
+    --dark-grey: #57534E;
+    --T50:  #F0FDFA;
+    --T100: #CCFBF1;
+    --T100-bg: rgba(204, 251, 241, 0.952);
+    --T200: #99F6E4;
+    --T300: #5EEAD4;
+    --T400: #2DD4BF;
+    --T500: #14B8A6;
+    --T600: #0D9488;
+    --T700: #0F766E;
+    --T800: #115E59;
+    --T900: #134E4A;
+    --T950: #042F2E;
+    --S50:  #FAFAF9;
+    --S100: #F5F5F4;
+    --S200: #E7E5E4;
+    --S300: #D6D3D1;
+    --S400: #A8A29E;
+    --S500: #78716C;
+    --S600: #57534E;
+    --S700: #44403C;
+    --S800: #292524;
+    --S900: #1C1917;
+    --S950: #0C0A09;
+}
+
+body {
+    font-family: lato-regular, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--clr-bg);
+}
+
+
+.header-container {
+    display: flex;
+}
+
+/* navigation */
+
+nav ul {
+    /* margin-bottom: 5em; */
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    list-style-type: none;
+}
+
+nav {
+    /* margin-top: -2%; */
+    background-color: white;
+    position: sticky;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 3em;
+}
+
+
+
+#menu-links {
+    font-weight: 500;
+    font-size: 17px;
+}
+
+#menu-links a {
+    margin: 0 18px;
+    color: var(--black);
+}
+
+#register-btns a {
+    margin-left: 18px;
+}
+
+a {
+    text-decoration: none;
+}
+
+#get-started-btn {
+    background-color: var(--accent700);
+    color: #ffffff;
+    padding: 1em;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: all 0.1s ease-in-out;
+}
+
+#get-started-btn:hover {
+    background-color: var(--accent600);
+}
+
+#login-btn {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+#log-out-btn {
+    background-color: #ffffff;
+    color: var(--accent700);
+    border: 2px solid var(--accent600);
+    border-radius: 6px;
+    padding: 0.6em 1em;
+    font-weight: 600;
+}
+.center {
+    margin-top: 100px;
+    text-align: center;
+    color: var(--accent700);
+}
+nav li {
+    display: inline;
+    margin: 0 4px;
+}
+
+.bg-nav-bar {
+    background-color: var(--T600);
+}
+
+.bg-nav-bar #header-title {
+    color: var(--S100);
+}
+
+.bg-nav-bar #menu-links a {
+    color: var(--S100);
+}
+
+#header-title {
+    font-size: 42px;
+    color: var(--accent);
+    font-family: lato-black, Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+}
+
+
+
+/* header */
+
+/* header {
+    margin-bottom: 30px;
+} */
+
+.welcome-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .welcome-container {
+        flex-direction: column;
+    }
+}
+
+.titles-container {
+    width: 420px;
+    text-align: center;
+}
+
+.titles-container h1 {
+    font-size: 48px;
+    font-family: lato-black, Arial, Helvetica, sans-serif;
+    color: var(--accent);
+}
+
+.titles-container h3 {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 14px auto 30px auto;
+    color: var(--dark-grey);
+}
+
+#main-img {
+    width: 400px;
+}
+
+.cta-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.cta-welcome-btns {
+    border: none;
+    color: white;
+    padding: 1em;
+    border-radius: 10px;
+    font-size: 14px;
+    width: 125px;
+    height: 53px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cta-borrow-now {
+    background-color: var(--accent700);
+    transition: all 0.2s ease-in-out;
+}
+
+.cta-borrow-now:hover {
+    background-color: var(--accent600);
+}
+
+.cta-explore {
+    color: var(--accent700);
+    border: 2px solid var(--accent700);
+    font-size: 13px;
+    background-color: #ffffff;
+    transition: all 0.2s ease-in-out;
+}
+
+.cta-explore:hover {
+    color: #ffffff;
+    border: none;
+    background-color: var(--accent700);
+}
+
+.scroll-item {
+    margin: 20px auto;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.scroll-item p {
+    color: var(--accent);
+}
+
+#down-arrow-img {
+    width: 50px;
+}
+
+
+/* book list */
+
+.main-book-list {
+    margin-top: 20px;
+    padding: 1em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+
+.book-item {
+    /* background-color: bisque; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 14px;
+}
+
+
+
+
+/* layout */
+
+#best-selling-title {
+    text-align: center;
+    color: var(--accent);
+    font-size: 38px;
+    margin-top: 30px;
+}
+
+.book-item img {
+    width: 175px;
+    height: 260px;
+    cursor: pointer;
+}
+
+#search-bar {
+    background-color: #ffffff;
+    border: 2px solid var(--accent600);
+    border-radius: 6px;
+    padding: 0.6em 1em;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+#search-bar i {
+    font-size: 15px;
+    color: var(--T600);
+    margin-top: 2px;
+}
+
+#search-bar input {
+    border: none;
+    background-color: inherit;
+    color: var(--accent700);
+
+}
+
+::selection{
+    background-color: var(--T700);
+    color: var(--S50);
+}
+
+
+.book-item button {
+    background-color: var(--T600);
+    color: var(--S50);
+    border-radius: 5px;
+    font-weight: 900;
+    padding: 15px;
+    border: none;
+    margin: 15px calc(100% / 4);
+}
+
+.book-item button:hover {
+    background-color: var(--T200);
+    color: var(--S900);
+    cursor: pointer;
+}
+
+
+/* footer */
+
+footer {
+/*     display: flex;
+    justify-content: center; */
+    margin-top: 20px;
+    background-color: var(--T700);
+    color: var(--S50);
+    padding: 40px;
+}
+
+footer a {
+    color: var(--T300);
+}
+
+footer a:hover{
+    color: var(--T500);
+    cursor: pointer;
+}

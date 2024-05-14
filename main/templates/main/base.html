@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BeBooky{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/icons8-books-32.png' %}">
+    {% block styleLinks %}
+
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav id="nav-bar">
+            <a href="{% url 'home' %}" id="header-title">BeBooky</a>
+            <ul id="menu-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="../pages/allBooks.html">All Books</a></li>
+                <li><a href=" {% block navBarLinkUrl %}{% endblock %} "> {% block navBarLink %}{% endblock %} </a></li>
+            </ul>
+            <ul id="register-btns">
+                <li><a href="../pages/Login.html" id="login-btn">Log in</a></li>
+                <li><a href="../pages/SignUp.html" id="get-started-btn">Get Started</a></li>
+            </ul>
+        </nav>
+        {% block header %}
+            
+        {% endblock %}
+    </header>
+    <main>
+        {% block main %}
+
+        {% endblock %}
+    </main>
+    {% block footer %}
+        <footer>
+            <div>Want to know more about BeBooky? <a href="{% url 'about-us' %}">About Us</a></div>
+            <div>Having any issues? <a href="{% url 'contact-us' %}">Contact Us</a></div>
+        </footer>
+    {% endblock %}
+</body>
+</html>
