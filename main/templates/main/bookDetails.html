@@ -1,0 +1,47 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}
+{{book.name}}
+{% endblock title %}
+
+{% block styleLinks %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/viewbookstyle.css' %}">
+{% endblock styleLinks %}
+
+{% block navBarLink %}BorrowedBooks{% endblock navBarLink %}
+{% block navBarLinkUrl %}#{% endblock navBarLinkUrl %}
+
+
+{% block main %}
+    <section>
+        <div id = "left">
+            <div id = "imgFrame">
+                <img id = "book-details-img" src="{{book.bookCover.url}}" alt="{{book.name}} book">
+            </div>
+        </div>
+        <div id = "right">
+            <div id = "bookName">{{book.name}}</div>
+            <div id = "rat"><b>Book Rating :&nbsp;</b> {{book.rating}} </div>
+            <br>
+            <hr>
+            <div id = "det"> Book Details</div>
+            <div id = "author"><b>Author Name &nbsp;</b><em>"{{book.author}}"</em></div>
+
+            <div id = "pages"><b>Number of pages&nbsp;</b>{{book.numberOfPages}}</div>
+
+            <div id = "cat"><b>Category &nbsp;</b>{{book.category}}</div>
+
+            <div id = "desc"><div id = "bookLabel"><b>Book Description</b></div>"{{book.description}}"</div>
+            {% comment %} <img id = "rightImg" src="{% static 'images/6888606_copy-removebg-preview.png' %}" alt="a stack of books img"> {% endcomment %}
+            <button id ="Borrow_button">Borrow</button>
+            <button id="edit-book-btn">Edit Book</button>
+            <button id="delete-book-btn">Delete Book</button>
+        </div>
+    </section>
+{% endblock main %}
+
+
+{% block footer %}
+{% endblock footer %}
