@@ -1,0 +1,42 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock title %}
+
+{% block styleLinks %}
+<link rel="stylesheet" href="{% static "css/style.css" %}">
+<link rel="stylesheet" href="{% static "css/Login.css" %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock styleLinks %}
+
+
+{% block main %}
+<section class = "body-container">
+    <div class = "login-img">
+        <p>"Your journey begins with a login."</p>
+        <img src = "{% static "images/Book-Lover-Pana.svg" %}" alt = "A man enjoying reading">
+    </div>
+    <div class = "login-form">
+        <h1>Login</h1>
+        <form id="log-in-form">
+            <label for = "username">Username or email address</label>
+            <div>
+                <i class="material-icons">person</i>
+                <input type = "text" required id = "username" placeholder = "Username or Email">
+            </div>
+            <label for = "password">Password</label>
+            <div>
+                <i class="material-icons">lock</i>
+                <input type = "password" required minlength = "8" maxlength = "20" id = "password" placeholder = "Password">
+                <i class="material-icons" id = "visibile">visibility</i>
+            </div>
+            <p class = "min" style="margin-bottom: 5px; display: flex; align-items: center;"></p>
+            <input type="submit" value = "Log In">
+        </form>
+        <P>Don't have an account? <a href = "{% url "signup" %}">Sign up</a></P>
+    </div>
+</section>
+{% endblock main %}
+
+{% block footer %}
+{% endblock footer %}

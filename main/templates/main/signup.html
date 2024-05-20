@@ -1,0 +1,56 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Sign up{% endblock title %}
+
+{% block styleLinks %}
+<link rel="stylesheet" href="{% static "css/SignUp.css" %}">
+<link rel="stylesheet" href="{% static "css/style.css" %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock styleLinks %}
+
+
+{% block main %}
+<section class = "body-container">
+    <div class = "signup-form">
+        <h1>Sign Up</h1>
+        <form id="sign-up-form">
+            <label for = "username">Username</label>
+            <div class = "Username">
+                <i class = "material-icons">person</i>
+                <input type = "text" required id = "username" placeholder = "Username">
+            </div>
+            <label for = "password">Password</label>
+            <div>
+                <i class="material-icons">lock</i>
+                <input type = "password" required minlength = "8" maxlength = "20" id = "password" placeholder = "Password">
+                <i class="material-icons" id = "visibile">visibility</i>
+            </div>
+            <p class = "min" style="margin-bottom: 5px; display: flex; align-items: center;"></p>
+            <label for = "ConfirmPassword">Confirm Password</label>
+            <div class="confirm">
+                <i class="material-icons">lock</i>
+                <input type = "password" required minlength = "8" maxlength = "20" id = "ConfirmPassword" placeholder = "Confirm Password">
+                <i class="material-icons" id = "visibileConfirm">visibility</i>
+            </div>
+            <p class = "message" style="margin-bottom: 5px; display: flex; align-items: center;"></p>
+            <label for = "email">Email Address</label>
+            <div>
+                <i class="material-icons">mail</i>
+                <input type = "email" required id = "email" placeholder = "Email">
+            </div>
+            <div>
+                <input id = "isAdmin" type="checkbox" name = "User Type" value = "Admin">
+                <label for = "isAdmin">Admin</label>
+            </div>
+            <input type="submit" value = "Sign Up">
+        </form>
+        <p>Already have an account? <a href = "{% url "login" %}">Login</a></p>
+    </div>
+    <div class = "signup-img">
+        <p>"Access to endless knowledge. Sign up and get started."</p>
+        <img src = "{% static "images/Book-Lover-Bro.svg" %}" alt = "A woman enjoying reading">
+    </div>
+</section>
+{% endblock main %}
+

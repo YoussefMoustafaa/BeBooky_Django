@@ -19,3 +19,9 @@ def aboutUs(response):
 def bookDetails(response, book_id):
     book = get_object_or_404(Book, pk=book_id)
     return render(response, 'main/bookDetails.html', {'book': book})
+
+def login(response):
+    return render(response, 'main/login.html', {})
+
+def signup(response):
+    return render(response, 'main/signup.html', {})

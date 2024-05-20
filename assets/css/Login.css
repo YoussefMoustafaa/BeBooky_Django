@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+    --T50:  #F0FDFA;
+    --T100: #CCFBF1;
+    --T200: #99F6E4;
+    --T300: #5EEAD4;
+    --T400: #2DD4BF;
+    --T500: #14B8A6;
+    --T600: #0D9488;
+    --T700: #0F766E;
+    --T800: #115E59;
+    --T900: #134E4A;
+    --T950: #042F2E;
+    --S50:  #FAFAF9;
+    --S100: #F5F5F4;
+    --S200: #E7E5E4;
+    --S300: #D6D3D1;
+    --S400: #A8A29E;
+    --S500: #78716C;
+    --S600: #57534E;
+    --S700: #44403C;
+    --S800: #292524;
+    --S900: #1C1917;
+    --S950: #0C0A09;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    padding: 0;
+    margin: 0;    
+    color: var(--S950);
+}
+
+::selection{
+    background-color: var(--T700);
+    color: var(--S50);
+}
+
+.body-container {
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 800px) {
+    .body-container {
+        flex-direction: column;
+    }
+}
+
+.body-container > div {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login-img {
+    background-color: var(--T700);
+    text-align: center;
+}
+
+.login-img img {
+    min-width: 200px;
+    max-width: 500px;
+    height: auto;
+    margin: 0 calc(100% / 5);
+}
+
+.login-img p {
+    margin: 10px;
+    padding: 10px;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--T200);
+    font-style: italic;
+}
+
+.login-form {
+    background-color: var(--S50);
+    align-items: center;
+    font-size: 15px;
+}
+
+.login-form h1 {
+    font-size: 25px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form  label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.login-form div {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid var(--T600);
+}
+
+.login-form div:hover {
+    border-bottom-color: var(--T200);
+    cursor: default;
+}
+
+.login-form div:hover i {
+    color: var(--T200);
+}
+
+.login-form div:not(:last-of-type) {
+    margin-bottom: 10px;
+}
+
+::placeholder {
+    color: var(--S400);    
+    font-size: 10px;
+}
+
+.login-form input {
+    border: none;
+    font-size: 15px;
+    background-color: inherit;
+    outline: none;
+    padding: 8px;
+}
+
+.login-form i{
+    font-size: 15px;
+    padding-left: 8px;
+    color: var(--T600);
+}
+
+.login-form i:hover {
+    color: var(--T200);
+}
+
+.login-form input[type = "submit"] {
+    background-color: var(--T600);
+    color: var(--S50);
+    border-radius: 5px;
+    font-weight: 900;
+    padding: 15px;
+    margin: 15px calc(100% / 4);
+    width: 50%;
+}
+
+.login-form input[type = "submit"]:hover {
+    background-color: var(--T200);
+    color: var(--S900);
+    cursor: pointer;
+}
+
+.login-form p {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.login-form a {
+    color: var(--T600);
+}
+
+.login-form a:hover {
+    color: var(--T800);
+    cursor: pointer;
+}
+
+.login-form a:visited {
+    color: var(--S500);
+}

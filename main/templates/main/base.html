@@ -20,8 +20,8 @@
                 <li><a href=" {% block navBarLinkUrl %}{% endblock %} "> {% block navBarLink %}{% endblock %} </a></li>
             </ul>
             <ul id="register-btns">
-                <li><a href="../pages/Login.html" id="login-btn">Log in</a></li>
-                <li><a href="../pages/SignUp.html" id="get-started-btn">Get Started</a></li>
+                <li><a href="{% url "login" %}" id="login-btn">Log in</a></li>
+                <li><a href="{% url "signup" %}" id="get-started-btn">Get Started</a></li>
             </ul>
         </nav>
         {% block header %}
@@ -34,10 +34,6 @@
         {% endblock %}
     </main>
     {% block footer %}
-        <footer>
-            <div>Want to know more about BeBooky? <a href="{% url 'about-us' %}">About Us</a></div>
-            <div>Having any issues? <a href="{% url 'contact-us' %}">Contact Us</a></div>
-        </footer>
     {% endblock %}
 </body>
 </html>

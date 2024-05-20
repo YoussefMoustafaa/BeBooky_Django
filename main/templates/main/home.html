@@ -63,3 +63,10 @@ BeBooky
         {% endfor %}
     </section>
 {% endblock %}
+
+{% block footer %}
+<footer>
+    <div>Want to know more about BeBooky? <a href="{% url 'about-us' %}">About Us</a></div>
+    <div>Having any issues? <a href="{% url 'contact-us' %}">Contact Us</a></div>
+</footer>
+{% endblock footer %}
