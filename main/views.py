@@ -1,7 +1,11 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.http import HttpResponse
 from django.db.models import Q
+from django.conf import settings
 from .models import Book
+from django.http import JsonResponse
+import os
+
 
 # Create your views here.
 def home(response):
@@ -30,6 +34,18 @@ def signup(response):
 
 def addBook(response):
     return render(response, 'main/addBook.html', {})
+
+def upload_image(request):
+    if request.method == 'POST' and request.FILES['upImg']:
+        uploaded_image = request.FILES['upImg']
+        image_path = os.path.join(settings.MEDIA_ROOT, 'images', uploaded_image.name)
+        with open(image_path, 'wb') as destination:
+            for chunk in uploaded_image.chunks():
+                destination.write(chunk)
+        uploaded_image_url = os.path.join(settings.MEDIA_URL, 'images', uploaded_image.name)
+        return JsonResponse({'url': uploaded_image_url})
+    else:
+        return JsonResponse({'error': 'No image file uploaded'}, status=400)
 
 def saveNewBook(request):
     if request.method == 'POST':
