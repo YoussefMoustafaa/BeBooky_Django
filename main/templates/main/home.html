@@ -20,12 +20,12 @@ BeBooky
             <h1>BeBooky: Read <br>& Borrow</h1>
             <h3>Eplore the Boundless Realms of Storytelling</h3>
             <div class="cta-container">
-                <a href="../pages/Login.html">
-                    <button class="cta-welcome-btns cta-borrow-now">Borrow Now</button>
-                </a>
-                <a href="../pages/allBooks.html">
+                <form action="{% url 'login' %}" method="get" style="display:inline;">
+                    <button type="submit" class="cta-welcome-btns cta-borrow-now">Borrow Now</button>
+                </form>
+                <form action="{% url 'allBooks' %}" method="get" style="display:inline;">
                     <button class="cta-welcome-btns cta-explore">Explore Books</button>
-                </a>
+                </form>
             </div>
         </div>
         <div>
