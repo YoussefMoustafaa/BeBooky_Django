@@ -18,19 +18,33 @@
     </div>
     <div class = "login-form">
         <h1>Login</h1>
-        <form id="log-in-form">
+        <form id="log-in-form" method = "POST">
+            {% csrf_token %}
+            {% comment "" %}
+            {{ form.as_p }}
+            {% endcomment %}
             <label for = "username">Username or email address</label>
             <div>
                 <i class="material-icons">person</i>
-                <input type = "text" required id = "username" placeholder = "Username or Email">
+                <input type = "text" required name = 'username' id = "username" placeholder = "Username or Email">
             </div>
             <label for = "password">Password</label>
             <div>
                 <i class="material-icons">lock</i>
-                <input type = "password" required minlength = "8" maxlength = "20" id = "password" placeholder = "Password">
+                <input type = "password" required name = password minlength = "8" maxlength = "20" id = "password" placeholder = "Password">
                 <i class="material-icons" id = "visibile">visibility</i>
             </div>
-            <p class = "min" style="margin-bottom: 5px; display: flex; align-items: center;"></p>
+
+                {% comment "" %}
+                {% if messages %}
+                    {% for message in messages%}
+                    <p class = "min" style="margin-bottom: 5px; display: flex; align-items: center;">
+                        {{ message }}
+                    {% endfor %}
+                    </p>
+                {% end if %}
+                {% endcomment %}
+                
             <input type="submit" value = "Log In">
         </form>
         <P>Don't have an account? <a href = "{% url "signup" %}">Sign up</a></P>
