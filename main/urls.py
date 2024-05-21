@@ -12,5 +12,5 @@ urlpatterns = [
     path('editBook/', views.editBook, name='editBook'),
     path('allBooks/', views.allBooks, name='allBooks'),
     path('search/', views.search_books, name='search_books'),
-
+    path('register/', views.register, name='register'),
 ]
