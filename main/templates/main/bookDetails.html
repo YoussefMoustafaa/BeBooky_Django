@@ -36,10 +36,13 @@
             <div id = "desc"><div id = "bookLabel"><b>Book Description</b></div>"{{book.description}}"</div>
             {% comment %} <img id = "rightImg" src="{% static 'images/6888606_copy-removebg-preview.png' %}" alt="a stack of books img"> {% endcomment %}
             <button id ="Borrow_button">Borrow</button>
-            <form action="{% url 'editBook' %}" method="get" style="display:inline;">
+            <form action="{% url 'editBook' book.id %}" method="get" style="display:inline;">
                 <button type="submit" >Edit Book</button>
               </form>
+            <form action="{% url 'delete_book' book.id %}" method="post">
+            {% csrf_token %}
             <button id="delete-book-btn">Delete Book</button>
+            </form>
         </div>
     </section>
 {% endblock main %}
