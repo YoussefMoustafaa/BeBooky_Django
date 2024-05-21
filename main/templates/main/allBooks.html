@@ -85,22 +85,23 @@ f{% extends "main/base.html" %}
 
 
  <section id="Books">
-    {% for book in booksList %}
-        <div class="card">
-        <div class="image-container">
-            <img src="{{book.bookCover.url}}" alt="{{book.name}} book">
-        </div>
-        <div class="container">
-            <h3 class="Book-name">{{book.name}}</h3>
-            <h6 class="Autor-name">{{book.author}}</h6>
-            <h2>
-            <i class="star-icon">&#9733;</i>
-            {{book.rating}}
-            </h2>
-        </div>
-        </div>
-    {% endfor %}
-    
+  {% for book in booksList %}
+  <a href="{% url 'bookDetails' book_id=book.id %}" class="book-card-link">
+      <div class="card">
+          <div class="image-container">
+              <img src="{{book.bookCover.url}}" alt="{{book.name}} book">
+          </div>
+          <div class="container">
+              <h3 class="Book-name">{{book.name}}</h3>
+              <h6 class="Autor-name">{{book.author}}</h6>
+              <h2>
+                  <i class="star-icon">&#9733;</i>
+                  {{book.rating}}
+              </h2>
+          </div>
+      </div>
+  </a>
+{% endfor %}
 </section> 
 {% endblock main %}
 
