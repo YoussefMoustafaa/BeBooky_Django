@@ -14,7 +14,8 @@
 <section class = "body-container">
     <div class = "signup-form">
         <h1>Sign Up</h1>
-        <form id="sign-up-form">
+        <form id="sign-up-form" action="{% url "register" %}" method=POST>
+            {% csrf_token %}
             <label for = "username">Username</label>
             <div class = "Username">
                 <i class = "material-icons">person</i>
@@ -53,4 +54,9 @@
     </div>
 </section>
 {% endblock main %}
+
+
+{% block script %}
+<script src="{% static "js/SignUp.js" %}"></script>
+{% endblock script %}
 
