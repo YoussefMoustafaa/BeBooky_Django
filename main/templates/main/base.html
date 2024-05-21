@@ -19,10 +19,16 @@
                 <li><a href="{% url 'allBooks' %}">All Books</a></li>
                 <li><a href=" {% block navBarLinkUrl %}{% endblock %} "> {% block navBarLink %}{% endblock %} </a></li>
             </ul>
+            {% if user.is_authenticated %}
+            <ul id="register-btns">
+                <li><a href="{% url "logout" %}" id="log-out-btn">Log out</a></li>
+            </ul>
+            {% else %}
             <ul id="register-btns">
                 <li><a href="{% url "login" %}" id="login-btn">Log in</a></li>
                 <li><a href="{% url "signup" %}" id="get-started-btn">Get Started</a></li>
             </ul>
+            {% endif %}
         </nav>
         {% block header %}
             
