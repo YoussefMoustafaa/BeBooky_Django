@@ -16,7 +16,7 @@
             <a href="{% url 'home' %}" id="header-title">BeBooky</a>
             <ul id="menu-links">
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="../pages/allBooks.html">All Books</a></li>
+                <li><a href="{% url 'allBooks' %}">All Books</a></li>
                 <li><a href=" {% block navBarLinkUrl %}{% endblock %} "> {% block navBarLink %}{% endblock %} </a></li>
             </ul>
             <ul id="register-btns">

@@ -15,8 +15,3 @@ class Book(models.Model):
         return self.name
 
 
-# class User(models.Model):
-#     username = models.CharField(max_length=255)
-#     password = models.CharField(max_length=255)
-#     borrowedBooks = models.ForeignKey(Book, on_delete=models.CASCADE, null=True, auto_created=[], default=[], primary_key=Book.name)
-#     isAdmin = models.BooleanField()

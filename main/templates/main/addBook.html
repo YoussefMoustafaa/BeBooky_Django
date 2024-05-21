@@ -1,0 +1,88 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Add Book{% endblock title %}
+
+{% block styleLinks %}
+<link rel="stylesheet" href="{% static "css/style.css" %}">
+<link rel="stylesheet" href="{% static "css/addBook.css" %}">
+{% endblock styleLinks %}
+
+
+{% block main %}
+<section class="body-container-add">
+    <!-- <h1>Add a New Book to the Library!</h1> -->
+    <form id="addBookForm">
+
+        <!-- <legend>Book Details</legend> -->
+        <div id = "left">
+            <div id = "leftTitle"> ADD A BOOK TO OUR LIBRARY! </div>
+            <img id= "leftImg"src="{% static "images/final test-Photoroom.png-Photoroom.png" %}" alt="">
+            <div id = "leftText">"Book by book we build bridges, add a book to expand our horizon!"</div>
+        </div>
+        <div id = "right">
+
+            <h2>Book Details</h2>
+            <div id = "imgFrame">
+            <img id = "img" src="{% static "images/export.png" %}" alt="book img">
+            <!-- <img id = "img"src="../images/The Power of Habit.jpg" alt="book img"> -->
+            </div>
+                <div id = "rightImg">
+                <label for="upImg">upload image</label>
+                <input id = "upImg"type="file" accept="image/jpeg, image/png, image/webp, image/jpg ">
+                </div>
+
+                <!-- <img id = "bookim" src="../images/6888606_copy-removebg-preview.png" alt=""> -->
+                <div id = "bname">
+                <label for="bookName">Book Name </label>
+                <br>
+                <input type="text" id="bookName" placeholder="enter the book name"  required>
+
+                </div>
+                <div id = "auname">
+                <label for="author">Author</label>
+                <br>
+                <input type="text" id="author" placeholder="enter the author name"  required>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div id = "bid">
+                <label for="bookID"> Book ID  </label>
+                <br>
+                <input type="number" id="bookID" name="bookID" placeholder="enter the book id"  required>
+
+                <br>
+                </div>
+                <div id = "bno">
+                <label for="no_of_pages"> Number of pages </label>
+                <br>
+                <input type="number" name="no_of_pages" id="no_of_pages"  placeholder="enter the number of pages" required>
+                <br>
+                </div>
+                <div id = "cat">
+                    <label for="category"> Category  </label>
+
+                    <input type="text" id="category" name="category" placeholder="enter the book's category"  required>
+
+                </div>
+                <div id = "rat">
+                    <label for="rating">Rating out of 5</label>
+                    <br>
+                    <input type="rating" name="rating" id="rating"  placeholder="enter the book's rating" required>
+                    <br>
+                </div>
+                <br>
+                <br>
+                <label for="description">Book Description </label>
+                <br>
+                <br>
+                <textarea name="des" id="description" cols="50" rows="10" placeholder="enter the book description"required></textarea>
+                <br>
+                <button id = "submit" type="submit">Add Book</button>
+                <!-- <button id = "save" type="submit" value="save changes" > -->    
+        </div>
+    </form>
+</section>
+{% endblock main %}
+

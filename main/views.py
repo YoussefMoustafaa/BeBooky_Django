@@ -25,3 +25,16 @@ def login(response):
 
 def signup(response):
     return render(response, 'main/signup.html', {})
+
+
+def addBook(response):
+    return render(response, 'main/addBook.html', {})
+
+
+def editBook(response):
+    return render(response, 'main/editBook.html', {})
+
+
+def allBooks(response):
+    booksList = Book.objects.all()
+    return render(response, 'main/allBooks.html', {'booksList': booksList})
