@@ -6,8 +6,9 @@ from django.conf import settings
 from .models import Book
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
+from .forms import Login_Form
 import os
 
 # Create your views here.
@@ -28,8 +29,28 @@ def bookDetails(response, book_id):
     book = get_object_or_404(Book, pk=book_id)
     return render(response, 'main/bookDetails.html', {'book': book})
 
-def login(response):
-    return render(response, 'main/login.html', {})
+def login_User(request):
+    if request.method == "POST":
+        form = Login_Form(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                # member = Member.objects.get(username=username)
+                return redirect('home')
+            else: 
+                messages.success(request, ("Invalid UserName or Password"))
+                return redirect('login_User')
+    else:
+        # form = Login_Form()
+        return render(request, 'main/login.html', {})
+
+def logout_User(request):
+    logout(request)
+    messages.success(request, ("You're logged out successfully"))
+    return redirect('login_User')
 
 def signup(response):
     return render(response, 'main/signup.html', {})
