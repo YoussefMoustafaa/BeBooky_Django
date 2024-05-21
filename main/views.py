@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from django.db.models import Q
 from .models import Book
 
 # Create your views here.
@@ -38,3 +39,12 @@ def editBook(response):
 def allBooks(response):
     booksList = Book.objects.all()
     return render(response, 'main/allBooks.html', {'booksList': booksList})
+
+def search_books(request):
+    query = request.GET.get('search', '')
+    books = []
+    if query:
+        books = Book.objects.filter( Q(name__icontains=query) | Q(author__icontains=query))
+    else:
+        books = Book.objects.all()
+    return render(request, 'main/search_books.html', {'books': books, 'query': query})

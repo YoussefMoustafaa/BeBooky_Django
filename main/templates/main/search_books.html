@@ -1,10 +1,11 @@
-f{% extends "main/base.html" %}
+<{% extends "main/base.html" %}
+{% comment %} {% load static %} {% endcomment %}
 {% load static %}
-
 
 {% block title %}All Books{% endblock title %}
 
 {% block styleLinks %}
+  
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800
 ;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"/>         
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -34,13 +35,14 @@ f{% extends "main/base.html" %}
 
       <div id="search-container">
         
-            <input type="search" id="search-input" name="search" placeholder="Search by Title..." value="{{ query }}"/>
-            <form action="{% url 'search_books' %}" method="get" style="display:inline;">
-              <button type="submit" class="cta-welcome-btns cta-explore">Search</button>
-            </form>
-    </div>
+        <input type="search" id="search-input" name="search" placeholder="Search by Title..." value="{{ query }}"/>
+        <form action="{% url 'search_books' %}" method="get" style="display:inline;">
+          <button type="submit" class="cta-welcome-btns cta-explore">Search</button>
+        </form>
+</div>
 
-
+  
+    
 
     <div id="buttons">
       <button class="cta-welcome-btns cta-explore" >All Books</button>
@@ -58,34 +60,9 @@ f{% extends "main/base.html" %}
 
 
 
-
-{% comment %} <div class="cards-container">
-  {% if booksList %}
-      {% for book in booksList %}
-      <div class="card">
-        <div class="image-container">
-            <img src="{{book.bookCover.url}}" alt="{{book.name}} book">
-        </div>
-        <div class="container">
-            <h3 class="Book-name">{{book.name}}</h3>
-            <h6 class="Autor-name">{{book.author}}</h6>
-            <h2>
-            <i class="star-icon">&#9733;</i>
-            {{book.rating}}
-            </h2>
-        </div>
-        </div>
-      {% endfor %}
-  {% else %}
-      <p>No books found.</p>
-  {% endif %}
-</div> {% endcomment %}
-
-
-
-
  <section id="Books">
-    {% for book in booksList %}
+    {% if books %}
+    {% for book in books %}
         <div class="card">
         <div class="image-container">
             <img src="{{book.bookCover.url}}" alt="{{book.name}} book">
@@ -100,8 +77,12 @@ f{% extends "main/base.html" %}
         </div>
         </div>
     {% endfor %}
+    {% else %}
+      <p>No books found.</p>
+  {% endif %}
     
 </section> 
 {% endblock main %}
 
 
+>
