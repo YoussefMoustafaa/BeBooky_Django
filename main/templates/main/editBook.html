@@ -8,74 +8,66 @@
 <link rel="stylesheet" href="{% static "css/style.css" %}">
 {% endblock styleLinks %}
 
-
 {% block main %}
 <section class="body-container-edit">
-    <form id="editbookform">
-        <div id = "left">
-            <h1 id = "leftTitle">Edit a book</h1>
-            <div id = "info">"Revise and personalize your book's details effortlessly"</div>
-            <img id = "leftImg" src="{% static "images/Ebook-bro_1.svg" %}" alt="" >
+    <form id="editbookform" method="post" enctype="multipart/form-data" action="{% url 'updateBook' book.id %}">
+        {% csrf_token %}
+        <div id="left">
+            <h1 id="leftTitle">Edit a book</h1>
+            <div id="info">"Revise and personalize your book's details effortlessly"</div>
+            <img id="leftImg" src="{% static 'images/Ebook-bro_1.svg' %}" alt="">
         </div>
-        <div id = "right">
+        <div id="right">
             <h2>Book Details</h2>
-            <div id = "imgFrame">
-                <img id = "img" src="../images/the fault in our stars.jpg" alt="book img">
-                <!-- <img id = "img"src="../images/The Power of Habit.jpg" alt="book img"> -->
+            <div id="imgFrame">
+                <img id="img" src="{{ book.bookCover.url }}" alt="book img">
             </div>
-                <div id = "rightImg">
-                    <label for="upImg">upload image</label>
-                    <input id = "upImg" type="file" accept="image/jpeg, image/png, image/webp ">
-                </div>
-                <!-- <img id = "bookim" src="../images/6888606_copy-removebg-preview.png" alt=""> -->
-                <div id = "bname">
-                    <label for="bookname">Book Name </label>
-                    <br>
-                    <input type="text" id="bookname" placeholder="enter the book name" value="book 1" required>
-                    <br>
-                    </div>
-                    <div id = "auname">
-                    <label for="author name">Author Name </label>
-                    <br>
-                    <input type="text" id="author" placeholder="enter the author name" value="Ahmed Tawfik" required>
-                </div>
+            <div id="rightImg">
+                <label for="upImg">Upload image</label>
+                <input id="upImg" type="file" accept="image/jpeg, image/png, image/webp" name="bookCover">
+            </div>
+            <div id="bname">
+                <label for="bookname">Book Name</label>
                 <br>
+                <input type="text" id="bookname" name="name" placeholder="Enter the book name" value="{{ book.name }}" required>
                 <br>
+            </div>
+            <div id="auname">
+                <label for="author">Author Name</label>
                 <br>
-                <div id = "bid">
-                    <label for="bookid"> Book ID  </label>
-                    <br>
-                    <input type="text" id="bookid" readonly placeholder="enter the book id" value="1" required>
-
-                    <br>
-                </div>
-                <div id = "bno">
-                    <label for="no_of_pages">Number of pages </label>
-                    <br>
-                    <input type="number" name="no_of_pages" id="no_of_pages" value="100" placeholder="enter the number of pages" required>
-                    <br>
-                </div>
-                <div id = "cat">
-                    <label for="category"> Category  </label>
-                    <br>
-                    <input type="text" id="category" placeholder="enter the book's category" value="fantasy" required>
-                    <br>
-                </div>
-                <div id = "rat">
-                    <label for="rating">Rating out of 5</label>
-                    <br>
-                    <input type="text" name="rating" id="rating" value="4.3" placeholder="enter the book's rating" required>
-                    <br>
-                    </div>
+                <input type="text" id="author" name="author" placeholder="Enter the author name" value="{{ book.author }}" required>
+            </div>
+            <br><br><br>
+            <div id="bid">
+                <label for="bookid">Book ID</label>
                 <br>
+                <input type="text" id="bookid" readonly placeholder="Enter the book id" value="{{ book.id }}" required>
                 <br>
-                <label for="description">Book Description </label>
+            </div>
+            <div id="bno">
+                <label for="no_of_pages">Number of pages</label>
                 <br>
+                <input type="number" name="numberOfPages" id="no_of_pages" value="{{ book.numberOfPages }}" placeholder="Enter the number of pages" required>
                 <br>
-                <textarea name="des" id="description" cols="50" rows="10" placeholder="enter the book description"required>"The Power of Habit (2012) unveils the science behind habit formation and change, making it a valuable read. Key highlights include: The book uncovers the psychology and neuroscience behind our daily routines. It presents practical strategies for replacing bad habits with positive ones."</textarea>
+            </div>
+            <div id="cat">
+                <label for="category">Category</label>
                 <br>
-                <button id = "save">save changes</button>
-                <!-- <button id = "save" type="submit" value="save changes" > -->
+                <input type="text" id="category" name="category" placeholder="Enter the book's category" value="{{ book.category }}" required>
+                <br>
+            </div>
+            <div id="rat">
+                <label for="rating">Rating out of 5</label>
+                <br>
+                <input type="text" name="rating" id="rating" value="{{ book.rating }}" placeholder="Enter the book's rating" required>
+                <br>
+            </div>
+            <br><br>
+            <label for="description">Book Description</label>
+            <br><br>
+            <textarea name="description" id="description" cols="50" rows="10" placeholder="Enter the book description" required>{{ book.description }}</textarea>
+            <br>
+            <button id="save" type="submit">Save Changes</button>
         </div>
     </form>
 </section>
