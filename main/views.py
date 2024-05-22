@@ -135,14 +135,18 @@ def allBooks(response):
 
 def search_books(request):
     query = request.GET.get('search', '')
-    books = []
+    category = request.GET.get('category', '')
+
+    books = [] # Initialize books with all books
+
+    if category:
+        books = Book.objects.filter(category__icontains=category)
+
     if query:
-        books = Book.objects.filter( Q(name__icontains=query) | Q(author__icontains=query))
-    else:
-        books = Book.objects.all()
-    return render(request, 'main/search_books.html', {'books': books, 'query': query})
+        # If there's a search query, filter books based on name, author, or category
+        books = Book.objects.filter(Q(name__icontains=query) | Q(author__icontains=query))
 
-
+    return render(request, 'main/search_books.html', {'books': books, 'query': query , 'category' : category})
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')

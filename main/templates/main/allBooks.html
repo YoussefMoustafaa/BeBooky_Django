@@ -1,4 +1,4 @@
-{% extends "main/base.html" %}
+f{% extends "main/base.html" %}
 {% load static %}
 
 
@@ -6,7 +6,7 @@
 
 {% block styleLinks %}
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800
-;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"/>         
+;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="{% static "css/allBooks.css" %}"/>
 <link rel="stylesheet" href="{% static "css/style.css" %}">
@@ -14,7 +14,7 @@
 
 
 {% block main %}
- 
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
       document.querySelector('.cta-explore').addEventListener('click', function(event) {
@@ -30,30 +30,55 @@
 </script>
 <div class="wrapper">
 
-    
-
-      <div id="search-container">
-        
-            <input type="search" id="search-input" name="search" placeholder="Search by Title..." value="{{ query }}"/>
-            <form action="{% url 'search_books' %}" method="get" style="display:inline;">
-              <button type="submit" class="cta-welcome-btns cta-explore">Search</button>
-            </form>
-    </div>
 
 
+  <div id="search-container">
 
-    <div id="buttons">
-      <button class="cta-welcome-btns cta-explore" >All Books</button>
-      <button class="cta-welcome-btns cta-explore" >Art</button>
-      <button class="cta-welcome-btns cta-explore" >Science</button>
-      <button class="cta-welcome-btns cta-explore" >Romance</button>
-      <button class="cta-welcome-btns cta-explore" >Fantasy</button>
-      <button class="cta-welcome-btns cta-explore" >History</button>
-      <button class="cta-welcome-btns cta-explore" >Fiction</button>
-      <button class="cta-welcome-btns cta-explore" >Comics</button>
-      <button class="cta-welcome-btns cta-explore" >Other..</button>                              
-    </div>                    
+    <input type="search" id="search-input" name="search" placeholder="Search by Title or Author..." value="{{ query }}"/>
+    <form action="{% url 'search_books' %}" method="get" style="display:inline;">
+      <button type="submit" class="cta-welcome-btns cta-explore">Search</button>
+    </form>
 </div>
+
+
+
+    <style>
+      .inline-form {
+          display: inline;
+      }
+    </style>
+    <div id="buttons">
+          <form action="{% url 'search_books' %}" method="get" class="inline-form">
+            <input type="hidden" name="category" value="Art">
+            <button  type="submit" class="cta-welcome-btns cta-explore">Art</button>
+          </form>
+          <form action="{% url 'search_books' %}" method="get" class="inline-form">
+            <input type="hidden" name="category" value="Science">
+            <button  type="submit" class="cta-welcome-btns cta-explore">Science</button>
+          </form>
+          <form action="{% url 'search_books' %}" method="get" class="inline-form">
+            <input type="hidden" name="category" value=">Romance">
+            <button  type="submit" class="cta-welcome-btns cta-explore">Romance</button>
+          </form>
+          <form action="{% url 'search_books' %}" method="get" class="inline-form">
+            <input type="hidden" name="category" value="Fantasy">
+            <button  type="submit" class="cta-welcome-btns cta-explore">Fantasy</button>
+          </form>
+          <form action="{% url 'search_books' %}" method="get" class="inline-form">
+            <input type="hidden" name="category" value="History">
+            <button  type="submit" class="cta-welcome-btns cta-explore">History</button>
+          </form>
+          <form action="{% url 'search_books' %}" method="get" class="inline-form">
+            <input type="hidden" name="category" value="Fiction">
+            <button  type="submit" class="cta-welcome-btns cta-explore">Fiction</button>
+          </form>
+          <form action="{% url 'search_books' %}" method="get" class="inline-form">
+            <input type="hidden" name="category" value="Comics">
+            <button  type="submit" class="cta-welcome-btns cta-explore">Comics</button>
+          </form>
+
+        </div>
+      </div>
 
 
 
@@ -85,24 +110,25 @@
 
 
  <section id="Books">
-  {% for book in booksList %}
-  <a href="{% url 'bookDetails' book_id=book.id %}" class="book-card-link">
-      <div class="card">
-          <div class="image-container">
-              <img src="{{book.bookCover.url}}" alt="{{book.name}} book">
-          </div>
-          <div class="container">
-              <h3 class="Book-name">{{book.name}}</h3>
-              <h6 class="Autor-name">{{book.author}}</h6>
-              <h2>
-                  <i class="star-icon">&#9733;</i>
-                  {{book.rating}}
-              </h2>
-          </div>
-      </div>
-  </a>
-{% endfor %}
-</section> 
+    {% for book in booksList %}
+    <a href="{% url 'bookDetails' book_id=book.id %}" class="book-card-link">
+        <div class="card">
+        <div class="image-container">
+            <img src="{{book.bookCover.url}}" alt="{{book.name}} book">
+        </div>
+        <div class="container">
+            <h3 class="Book-name">{{book.name}}</h3>
+            <h6 class="Autor-name">{{book.author}}</h6>
+            <h2>
+            <i class="star-icon">&#9733;</i>
+            {{book.rating}}
+            </h2>
+        </div>
+        </div>
+      </a>
+    {% endfor %}
+
+</section>
 {% endblock main %}
 
 
