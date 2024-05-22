@@ -116,7 +116,7 @@ form.addEventListener('submit', e => {
 
     const isAdmin = isChecked()
 
-    fetch('register/', {
+    fetch('/register/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -131,13 +131,16 @@ form.addEventListener('submit', e => {
     })
     .then(response => response.json())
     .then(data => {
-        if (data.status === 'success')
-            window.location.href = 'login.html'
+        if (data.status === 'success'){
+            window.location.href = '/'
+            alert('Account Created Successfully!')
+        }
         else
-            console.error('Failed to register user', data.error)
+            alert('Failed to register user', data.error)
     })
     .catch(error => {
-        console.error('Error:', error)
+        // console.error('Error:', error)
+        console.log(error);
     })
 
 })

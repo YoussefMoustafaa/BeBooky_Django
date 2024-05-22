@@ -1,12 +1,12 @@
 from pyexpat.errors import messages
 from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse
 from django.db.models import Q
 from .models import Book
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 def home(response):
@@ -26,7 +26,7 @@ def bookDetails(response, book_id):
     book = get_object_or_404(Book, pk=book_id)
     return render(response, 'main/bookDetails.html', {'book': book})
 
-def login(response):
+def login_user(response):
     return render(response, 'main/login.html', {})
 
 def signup(response):
@@ -116,17 +116,20 @@ def register(request):
         password = request.POST.get('password')
         email = request.POST.get('email')
         is_admin = request.POST.get('isAdmin') == 'true'
+        
+        try:
+            user = User.objects.create(
+                username=username,
+                password=make_password(password),
+                email=email,
+                is_staff=is_admin
+            )
+            user.save()
+            user = authenticate(request, username=username, password=password, email=email)
+            if user is not None:
+                login(request, user)
+                return JsonResponse({'status': 'success'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'error': str(e)}, status=400)
 
-        user = User.objects.create_user(username=username, password=password, email=email)
-        user.is_staff = is_admin
-        user.save()
-
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            # messages.success(request, ('Registration Successful!'))
-            return JsonResponse({'status': 'success'}, status=200)
-        else:
-            return JsonResponse({'status': 'fail', 'error': 'Authentication failed'}, status=400)
-    # return redirect('home')
     return JsonResponse({'status' : 'fail', 'error': 'Invalid request method'}, status=400)
