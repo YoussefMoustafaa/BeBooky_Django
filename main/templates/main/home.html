@@ -10,8 +10,7 @@ BeBooky
 <link rel="stylesheet" href="{% static 'css/allBooks.css' %}">
 {% endblock %}
 
-{% block navBarLink %}BorrowedBooks{% endblock navBarLink %}
-{% block navBarLinkUrl %}#{% endblock navBarLinkUrl %}
+{% block coloredNavBar %}{% endblock coloredNavBar %}
 
 
 {% block header %}
@@ -20,9 +19,11 @@ BeBooky
             <h1>BeBooky: Read <br>& Borrow</h1>
             <h3>Eplore the Boundless Realms of Storytelling</h3>
             <div class="cta-container">
-                <form action="{% url 'login' %}" method="get" style="display:inline;">
+                {% if not user.is_staff %}
+                <form action="{% url 'login_User' %}" method="get" style="display:inline;">
                     <button type="submit" class="cta-welcome-btns cta-borrow-now">Borrow Now</button>
                 </form>
+                {% endif %}
                 <form action="{% url 'allBooks' %}" method="get" style="display:inline;">
                     <button class="cta-welcome-btns cta-explore">Explore Books</button>
                 </form>

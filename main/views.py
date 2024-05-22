@@ -1,13 +1,15 @@
 from pyexpat.errors import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from django.db.models import Q
+from django.conf import settings
 from .models import Book
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
+from .forms import Login_Form
+import os
 from django.contrib.auth.hashers import make_password
-
 # Create your views here.
 def home(response):
     booksList = Book.objects.all()
@@ -26,8 +28,27 @@ def bookDetails(response, book_id):
     book = get_object_or_404(Book, pk=book_id)
     return render(response, 'main/bookDetails.html', {'book': book})
 
-def login_user(response):
-    return render(response, 'main/login.html', {})
+def login_User(request):
+    if request.method == "POST":
+        form = Login_Form(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                # member = Member.objects.get(username=username)
+                return redirect('home')
+            else: 
+                messages.success(request, ("Invalid UserName or Password"))
+                return redirect('login_User')
+    else:
+        # form = Login_Form()
+        return render(request, 'main/login.html', {})
+
+def logout_User(request):
+    logout(request)
+    return redirect('login_User')
 
 def signup(response):
     return render(response, 'main/signup.html', {})
@@ -35,6 +56,18 @@ def signup(response):
 
 def addBook(response):
     return render(response, 'main/addBook.html', {})
+
+def upload_image(request):
+    if request.method == 'POST' and request.FILES['upImg']:
+        uploaded_image = request.FILES['upImg']
+        image_path = os.path.join(settings.MEDIA_ROOT, 'images', uploaded_image.name)
+        with open(image_path, 'wb') as destination:
+            for chunk in uploaded_image.chunks():
+                destination.write(chunk)
+        uploaded_image_url = os.path.join(settings.MEDIA_URL, 'images', uploaded_image.name)
+        return JsonResponse({'url': uploaded_image_url})
+    else:
+        return JsonResponse({'error': 'No image file uploaded'}, status=400)
 
 def saveNewBook(request):
     if request.method == 'POST':

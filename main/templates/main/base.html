@@ -12,17 +12,27 @@
 </head>
 <body>
     <header>
-        <nav id="nav-bar">
+        <nav id="nav-bar" {% block coloredNavBar %}class="bg-nav-bar"{% endblock coloredNavBar %}>
             <a href="{% url 'home' %}" id="header-title">BeBooky</a>
             <ul id="menu-links">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'allBooks' %}">All Books</a></li>
-                <li><a href=" {% block navBarLinkUrl %}{% endblock %} "> {% block navBarLink %}{% endblock %} </a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'addBook' %}">Add Book</a></li>
+                {% else %}
+                <li><a href=" {% url 'borrowedBooks' %} ">Borrowed Books</a></li>
+                {% endif %}
             </ul>
+            {% if user.is_authenticated %}
             <ul id="register-btns">
-                <li><a href="{% url "login" %}" id="login-btn">Log in</a></li>
+                <li><a href="{% url "logout_User" %}" id="log-out-btn">Log out</a></li>
+            </ul>
+            {% else %}
+            <ul id="register-btns">
+                <li><a href="{% url "login_User" %}" id="login-btn">Log in</a></li>
                 <li><a href="{% url "signup" %}" id="get-started-btn">Get Started</a></li>
             </ul>
+            {% endif %}
         </nav>
         {% block header %}
             
