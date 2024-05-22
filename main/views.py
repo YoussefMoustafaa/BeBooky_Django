@@ -90,7 +90,7 @@ def saveNewBook(request):
             description=description,
             rating=rating,
             bookCover=bookCover,
-            isBorrowed=False  
+            borrower=None
         )
         new_book.save()
         return redirect('allBooks')  
@@ -166,3 +166,17 @@ def register(request):
             return JsonResponse({'status': 'error', 'error': str(e)}, status=400)
 
     return JsonResponse({'status' : 'fail', 'error': 'Invalid request method'}, status=400)
+
+
+def borrow(request, book_id):
+    book = get_object_or_404(Book, pk=book_id)
+    book.borrower = request.user
+    book.save()
+    return redirect('allBooks')
+
+
+def return_book(request, book_id):
+    book = get_object_or_404(Book, book_id)
+    book.borrower = None
+    book.save()
+    return redirect('allBooks')

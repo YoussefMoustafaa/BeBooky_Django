@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 {% endblock styleLinks %}
 
+{% block coloredNavBar %}{% endblock coloredNavBar %}
+
 
 {% block main %}
 <section class = "body-container">
@@ -46,7 +48,7 @@
             </div>
             <input type="submit" value = "Sign Up">
         </form>
-        <p>Already have an account? <a href = "{% url "login" %}">Login</a></p>
+        <p>Already have an account? <a href = "{% url "login_User" %}">Login</a></p>
     </div>
     <div class = "signup-img">
         <p>"Access to endless knowledge. Sign up and get started."</p>

@@ -35,11 +35,23 @@
 
             <div id = "desc"><div id = "bookLabel"><b>Book Description</b></div>"{{book.description}}"</div>
             {% comment %} <img id = "rightImg" src="{% static 'images/6888606_copy-removebg-preview.png' %}" alt="a stack of books img"> {% endcomment %}
-            <button id ="Borrow_button">Borrow</button>
+            {% if book.borrower is not None %}
+                {% if user == book.borrower %}
+                <a href="{% url 'return_book' book.id %}"><button id ="Borrow_button">Return</button></a>
+                {% else %}
+                <button id ="Borrow_button" class="borrowedBook">Borrowed</button>
+                {% endif %}
+            {% else %}
+            {% if user.is_authenticated and not user.is_staff %}
+            <a href="{% url 'borrow' book.id %}"><button id ="Borrow_button">Borrow</button></a>
+            {% elif not user.is_authenticated %}
+            <a href="{% url 'login_User' %}"><button id ="Borrow_button">Borrow</button></a>
+            {% endif %}
+            {% endif %}
             <form action="{% url 'editBook' book.id %}" method="get" style="display:inline;">
                 <button type="submit" >Edit Book</button>
-              </form>
-            <form action="{% url 'delete_book' book.id %}" method="post">
+            </form>
+            <form action="{% url 'delete_book' book.id %}" method="post" style="display:inline;">
             {% csrf_token %}
             <button id="delete-book-btn">Delete Book</button>
             </form>
