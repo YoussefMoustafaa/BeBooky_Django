@@ -10,9 +10,15 @@ from django.http import JsonResponse
 from .forms import Login_Form
 import os
 from django.contrib.auth.hashers import make_password
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+
+
+
 # Create your views here.
 def home(response):
     booksList = Book.objects.all()
+    booksList = booksList[0:4]
     return render(response, 'main/home.html', {'booksList': booksList})
 
 
@@ -27,6 +33,7 @@ def aboutUs(response):
 def bookDetails(response, book_id):
     book = get_object_or_404(Book, pk=book_id)
     return render(response, 'main/bookDetails.html', {'book': book})
+
 
 def login_User(request):
     if request.method == "POST":
@@ -46,9 +53,11 @@ def login_User(request):
         # form = Login_Form()
         return render(request, 'main/login.html', {})
 
+
 def logout_User(request):
     logout(request)
     return redirect('login_User')
+
 
 def signup(response):
     return render(response, 'main/signup.html', {})
@@ -56,6 +65,7 @@ def signup(response):
 
 def addBook(response):
     return render(response, 'main/addBook.html', {})
+
 
 def upload_image(request):
     if request.method == 'POST' and request.FILES['upImg']:
@@ -68,6 +78,7 @@ def upload_image(request):
         return JsonResponse({'url': uploaded_image_url})
     else:
         return JsonResponse({'error': 'No image file uploaded'}, status=400)
+
 
 def saveNewBook(request):
     if request.method == 'POST':
@@ -102,6 +113,7 @@ def editBook(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
     return render(request, 'main/editBook.html', {'book': book})
 
+
 def updateBook(request, book_id):
     if request.method == 'POST':
         book = get_object_or_404(Book, pk=book_id)
@@ -120,6 +132,7 @@ def updateBook(request, book_id):
     else:
         return redirect('editBook', book_id=book_id)
 
+
 def delete_book(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
     book = get_object_or_404(Book, pk=book_id)
@@ -129,9 +142,17 @@ def delete_book(request, book_id):
     else:
         return redirect('bookDetails', book_id=book_id)
 
+
+# @receiver(post_delete, sender=Book)
+# def delete_book_image(sender, book, **kwargs):
+#     if book.bookCover:
+#         book.bookCover.delete(save=True)
+
+
 def allBooks(response):
     booksList = Book.objects.all()
     return render(response, 'main/allBooks.html', {'booksList': booksList})
+
 
 def search_books(request):
     query = request.GET.get('search', '')
@@ -147,6 +168,8 @@ def search_books(request):
         books = Book.objects.filter(Q(name__icontains=query) | Q(author__icontains=query))
 
     return render(request, 'main/search_books.html', {'books': books, 'query': query , 'category' : category})
+
+
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -176,11 +199,16 @@ def borrow(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
     book.borrower = request.user
     book.save()
-    return redirect('allBooks')
+    return redirect('borrowedBooks')
 
 
 def return_book(request, book_id):
-    book = get_object_or_404(Book, book_id)
+    book = get_object_or_404(Book, pk=book_id)
     book.borrower = None
     book.save()
-    return redirect('allBooks')
+    return redirect('borrowedBooks')
+
+
+def borrowedBooks(response):
+    books = Book.objects.filter(borrower=response.user)
+    return render(response, 'main/borrowedBooks.html', {'books': books})

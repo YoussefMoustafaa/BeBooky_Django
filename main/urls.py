@@ -20,4 +20,5 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('borrow/<int:book_id>/', views.borrow, name='borrow'),
     path('return_book/<int:book_id>/', views.return_book, name='return_book'),
+    path('borrowedBooks/', views.borrowedBooks, name='borrowedBooks'),
 ]

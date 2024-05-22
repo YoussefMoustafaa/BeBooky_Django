@@ -47,7 +47,7 @@ BeBooky
     <section id="book-list" class="main-book-list">
         {% for book in booksList %}
             <div class="card">
-                    <a href="{% url 'bookDetails' book.id %}">
+                <a href="{% url 'bookDetails' book.id %}">
                     <div class="image-container">
                         <img src="{{book.bookCover.url}}" alt="{{book.name}} book" id="{{book.id}}">
                     </div>

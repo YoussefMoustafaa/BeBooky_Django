@@ -48,6 +48,7 @@
             <a href="{% url 'login_User' %}"><button id ="Borrow_button">Borrow</button></a>
             {% endif %}
             {% endif %}
+            {% if user.is_staff %}
             <form action="{% url 'editBook' book.id %}" method="get" style="display:inline;">
                 <button type="submit" >Edit Book</button>
             </form>
@@ -55,6 +56,7 @@
             {% csrf_token %}
             <button id="delete-book-btn">Delete Book</button>
             </form>
+            {% endif %}
         </div>
     </section>
 {% endblock main %}

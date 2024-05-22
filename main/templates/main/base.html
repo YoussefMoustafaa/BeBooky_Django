@@ -20,7 +20,7 @@
                 {% if user.is_staff %}
                 <li><a href="{% url 'addBook' %}">Add Book</a></li>
                 {% else %}
-                {% comment %} <li><a href=" {% url 'borrowedBooks' %} ">Borrowed Books</a></li> {% endcomment %}
+                <li><a href=" {% url 'borrowedBooks' %} ">Borrowed Books</a></li>
                 {% endif %}
             </ul>
             <ul id="register-btns">
