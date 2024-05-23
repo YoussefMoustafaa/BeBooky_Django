@@ -35,24 +35,23 @@
                 <i class="material-icons">lock</i>
                 <input type = "password" required name = password minlength = "8" maxlength = "20" id = "password" placeholder = "Password">
                 <i class="material-icons" id = "visibile">visibility</i>
-            </div>
-
-                {% comment "" %}
-                {% if messages %}
-                    {% for message in messages%}
-                    <p class = "min" style="margin-bottom: 5px; display: flex; align-items: center;">
-                        {{ message }}
-                    {% endfor %}
-                    </p>
-                {% end if %}
-                {% endcomment %}
-                
+            </div>                
             <input type="submit" value = "Log In">
         </form>
         <P>Don't have an account? <a href = "{% url "signup" %}">Sign up</a></P>
     </div>
 </section>
 {% endblock main %}
+
+{% block script %}
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            alert("{{ message }}");
+        {% endfor %}
+    </script>
+{% endif %}
+{% endblock script %}
 
 {% block footer %}
 {% endblock footer %}
