@@ -23,13 +23,16 @@
                 <i class = "material-icons">person</i>
                 <input type = "text" required id = "username" placeholder = "Username">
             </div>
-            <label for = "password">Password</label>
+            <label for="password">Password</label>
             <div>
                 <i class="material-icons">lock</i>
-                <input type = "password" required minlength = "8" maxlength = "20" id = "password" placeholder = "Password">
-                <i class="material-icons" id = "visibile">visibility</i>
+                <input type="password" required minlength="8" maxlength="20" id="password" placeholder="Password">
+                <i class="material-icons" id="visibile">visibility</i>
             </div>
             <p class = "min" style="margin-bottom: 5px; display: flex; align-items: center;"></p>
+            <div class="pass-strength" style="background-color: var(--S50); width: 100%; height: 15px; border-color: var(--S50);">
+                <div id="pass-strength-loader" style="background-color: #d73f40; width: 1%; height: 100%; border: 5px solid var(--S50); transition: 0.5s;"></div>
+            </div>
             <label for = "ConfirmPassword">Confirm Password</label>
             <div class="confirm">
                 <i class="material-icons">lock</i>
