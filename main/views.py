@@ -1,4 +1,5 @@
 from pyexpat.errors import messages
+from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from django.db.models import Q
 from django.conf import settings
@@ -47,7 +48,7 @@ def login_User(request):
                 # member = Member.objects.get(username=username)
                 return redirect('home')
             else: 
-                messages.success(request, ("Invalid UserName or Password"))
+                messages.error(request, "Invalid UserName or Password")
                 return redirect('login_User')
     else:
         # form = Login_Form()
