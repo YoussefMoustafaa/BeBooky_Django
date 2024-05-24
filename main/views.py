@@ -136,7 +136,6 @@ def updateBook(request, book_id):
 
 def delete_book(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
-    book = get_object_or_404(Book, pk=book_id)
     if request.method == 'POST':
         book.delete()
         return redirect('allBooks')  

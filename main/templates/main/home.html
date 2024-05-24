@@ -20,7 +20,11 @@ BeBooky
             <h3>Eplore the Boundless Realms of Storytelling</h3>
             <div class="cta-container">
                 {% if not user.is_staff %}
+                {% if user.is_authenticated %}
+                <form action="{% url 'borrowedBooks' %}" method="get" style="display:inline;">
+                {% else %}
                 <form action="{% url 'login_User' %}" method="get" style="display:inline;">
+                {% endif %}
                     <button type="submit" class="cta-welcome-btns cta-borrow-now">Borrow Now</button>
                 </form>
                 {% endif %}

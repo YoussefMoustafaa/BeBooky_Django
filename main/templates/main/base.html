@@ -20,11 +20,16 @@
                 {% if user.is_staff %}
                 <li><a href="{% url 'addBook' %}">Add Book</a></li>
                 {% else %}
+                {% if user.is_authenticated %}
                 <li><a href=" {% url 'borrowedBooks' %} ">Borrowed Books</a></li>
+                {% else %}
+                <li><a href=" {% url 'login_User' %} ">Borrowed Books</a></li>
+                {% endif %}
                 {% endif %}
             </ul>
             <ul id="register-btns">
             {% if user.is_authenticated %}
+                <li><a href="{% url "borrowedBooks" %}" id="login-btn">{{user.username}}</a></li>
                 <li><a href="{% url "logout_User" %}" id="log-out-btn">Log out</a></li>
             {% else %}
                 <li><a href="{% url "login_User" %}" id="login-btn">Log in</a></li>

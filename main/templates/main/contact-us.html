@@ -1,12 +1,46 @@
 {% extends 'main/base.html' %}
+{% load static %}
+
 
 {% block title %}
 Contact Us
 {% endblock %}
 
+{% block styleLinks %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/contact-us.css' %}">
+{% endblock %}
 
 {% block main %}
-
+    <div class="container" id="container">
+        <div class="image-container">
+            <img src="{% static 'images/contact us.png' %}" alt="contact us image">
+        </div>
+        <div class="text-container">
+            <form  method="post">
+                <div class="intro">
+                    <h1>Contact Us</h1>
+                    <h5>we're happy to help</h5>
+                </div>
+                <p>
+                    Mestive<br>20220411
+                </p>
+                <p>
+                    Bassant<br>20220084
+                </p>
+                <p>
+                    Mazen<br>20220467
+                </p>
+                <p>
+                    Moro <br>20220222
+                </p>
+                <p>
+                    Boleka <br>20220087
+                </p>
+                </form>
+            <p id="statement">.Made by Nada.</p>
+        </div>
+    </div>
 {% endblock %}
 
 
