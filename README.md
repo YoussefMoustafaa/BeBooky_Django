@@ -19,22 +19,30 @@ BeBooky is a full-stack online library platform designed for general users to br
 
   1. Install Django: Ensure that Django is installed on your local machine. You can install it using pip:
 
-bash```pip install django```
+```bash
+pip install django
+```
 
   2. Clone the Repository:
 
-bash```git clone [repository-link]
-cd BeBooky```
+```bash
+git clone [repository-link]
+cd BeBooky
+```
 
   3. Migrate the Database:
     Run the following command to set up the database:
 
-bash```python manage.py migrate```
+```bash
+python manage.py migrate
+```
 
   4. Run the Development Server:
     Start the Django development server:
 
-bash```python manage.py runserver```
+```bash
+python manage.py runserver
+```
   
   5. Access the Website:
     Open a browser and go to http://127.0.0.1:8000/ to view the site locally.
