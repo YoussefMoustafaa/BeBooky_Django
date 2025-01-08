@@ -26,7 +26,7 @@ pip install django
   2. Clone the Repository:
 
 ```bash
-git clone [repository-link]
+git clone https://github.com/YoussefMoustafaa/BeBooky_Django
 cd BeBooky
 ```
 
