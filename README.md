@@ -58,7 +58,7 @@ python manage.py runserver
   * User Reviews: Adding a review system for books.
   * Recommendation Engine: Personalized book recommendations based on user preferences.
 
-Contributions
+## Contributions
 
 Contributions are welcome! If you’d like to help improve the project, feel free to fork the repository and submit a pull request. Please follow the guidelines for submitting changes.
 License
